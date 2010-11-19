@@ -1,0 +1,14 @@
+h2. Exemplos
+
+pre. /**
+  * Usando inflexões de palavras em português brasileiro
+  */
+require("pluralize.php");
+
+pre. //Transformando a palavra para o plural
+echo Inflector::pluralize('mês');
+
+
+pre. //Transformando a palavra para o singular
+echo Inflector::singularize('meses');
+
