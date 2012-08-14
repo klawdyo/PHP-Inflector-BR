@@ -1,10 +1,22 @@
 <?php
 /**
- *    --------------------------------------------------------------------------------------
- *        TO DO
- *    --------------------------------------------------------------------------------------
- *    Precisa analisar também a questão das  palavras  compostas,  onde,  no  português,  na
- *    maioria das vezes, a pluralização ocorre no primeiro termo.
+    -----------------------------------------------------------------------
+        CHANGELOG
+    -----------------------------------------------------------------------
+    02/02/2010
+        [+] pluralize() transforma palavras do singular para o plural
+        [+] singularize() transforma palavras do plural para o singular
+    15/04/2010
+        [m] Troca do str_replace() pelo preg_replace() como função de
+            substituição.
+    16/04/2010
+        [m] Métodos transformados em estáticos
+        [m] Alterações simples nas regras
+    -----------------------------------------------------------------------
+        TO DO
+    -----------------------------------------------------------------------
+    Precisa analisar também a questão das palavras compostas, onde, no
+    português, na maioria das vezes, a pluralização ocorre no primeiro termo.
  */
  
 class Inflector{
@@ -36,7 +48,11 @@ class Inflector{
 
     /**
      *    Passa uma palavra para o plural
-     *    
+     *
+     *    @version
+     *      1.0 Initial
+     *      1.1 15/04/2010 Substituição do str_replace() pelo preg_replace()
+     *          como função de substituição
      *    @param  string $word A palavra que deseja ser passada para o plural
      *    @return string
      */
@@ -61,6 +77,10 @@ class Inflector{
     /**
      *    Passa uma palavra para o singular
      *    
+     *    @version
+     *      1.0 Initial
+     *      1.1 15/04/2010 Substituição do str_replace() pelo preg_replace()
+     *          como função de substituição
      *    @param  string $word A palavra que deseja ser passada para o singular
      *    @return string
      */
@@ -69,7 +89,7 @@ class Inflector{
         if(in_array($word, self::$exceptions)):
             $invert = array_flip(self::$exceptions);
             return $invert[$word];
-        //Não é execeção.. Mas pertence a alguma regra?
+        //Não é exceção.. Mas pertence a alguma regra?
         else:
             foreach(self::$rules as $singular => $plural):
                 if(preg_match("({$plural}$)",$word))
