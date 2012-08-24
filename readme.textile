@@ -3,7 +3,7 @@ h2. Exemplos
 pre. /**
   * Usando inflexões de palavras em português brasileiro
   */
-require("pluralize.php");
+require("inflector.php");
 
 pre. //Transformando a palavra para o plural
 echo Inflector::pluralize('mês');
