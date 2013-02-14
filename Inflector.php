@@ -12,6 +12,9 @@
     16/04/2010
         [m] Métodos transformados em estáticos
         [m] Alterações simples nas regras
+    13/02/2013
+        [+] addException() adiciona uma exceção às regras
+        [+] addRule() adiciona uma regra
     -----------------------------------------------------------------------
         TO DO
     -----------------------------------------------------------------------
@@ -47,31 +50,71 @@ class Inflector{
     );
 
     /**
+     *    Adiciona uma exceção às regras
+     *
+     *    @version
+     *      1.0 13/02/2013 Initial
+     *
+     *    @param  string $singularWord Palavra no singular
+     *    @param  string $pluralWord Palavra no plural
+     *    @return bool
+     */
+    public static function addException($singularWord, #pluralWord){
+      self::$exceptions[$singularWord] = $pluralWord;
+
+      return true;
+    }
+
+    /**
+     *    Adiciona uma regra
+     *
+     *    @version
+     *      1.0 13/02/2013 Initial
+     *
+     *    @param  string $singularSufix Terminação da palavra no singular
+     *    @param  string $pluralSufix Terminação da palavra no plural
+     *    @return bool
+     */
+    public static function addRule($singularWord, #pluralWord){
+      self::$rules[$singularSufix] = $pluralSufix;
+
+      return true;
+    }
+
+    /**
      *    Passa uma palavra para o plural
      *
      *    @version
      *      1.0 Initial
      *      1.1 15/04/2010 Substituição do str_replace() pelo preg_replace()
      *          como função de substituição
+     *
      *    @param  string $word A palavra que deseja ser passada para o plural
      *    @return string
      */
     public static function pluralize($word){
         //Pertence a alguma exceção?
-        if(array_key_exists($word, self::$exceptions)):
+        if(array_key_exists($word, self::$exceptions)){
             return self::$exceptions[$word];
+        }
+
         //Não pertence a nenhuma exceção. Mas tem alguma regra?
-        else:
-            foreach(self::$rules as $singular=>$plural):
-                if(preg_match("({$singular}$)", $word))
+        else{
+            foreach(self::$rules as $singular=>$plural){
+                if(preg_match("({$singular}$)", $word)){
                     return preg_replace("({$singular}$)", $plural, $word);
-            endforeach;
-        endif;
+                }
+            }
+        }
+
         //Não pertence às exceções, nem às regras.
         //Se não terminar com "s", adiciono um.
-        if(substr($word, -1) !== 's')
+        if(substr($word, -1) !== 's'){
             return $word . 's';
-        return $word;
+        }
+        else{
+          return $word;
+        }
     }
     
     /**
@@ -81,6 +124,7 @@ class Inflector{
      *      1.0 Initial
      *      1.1 15/04/2010 Substituição do str_replace() pelo preg_replace()
      *          como função de substituição
+     *
      *    @param  string $word A palavra que deseja ser passada para o singular
      *    @return string
      */
@@ -89,18 +133,23 @@ class Inflector{
         if(in_array($word, self::$exceptions)):
             $invert = array_flip(self::$exceptions);
             return $invert[$word];
+        
         //Não é exceção.. Mas pertence a alguma regra?
-        else:
-            foreach(self::$rules as $singular => $plural):
-                if(preg_match("({$plural}$)",$word))
+        else{
+            foreach(self::$rules as $singular => $plural){
+                if(preg_match("({$plural}$)",$word)){
                     return preg_replace("({$plural}$)", $singular, $word);
-            endforeach;
-        endif;
+                }
+            }
+        }
+
         //Nem é exceção, nem tem regra definida. 
         //Apaga a última somente se for um "s" no final
-        if(substr($word, -1) == 's')
+        if(substr($word, -1) == 's'){
             return substr($word, 0, -1);
-        return $word;
+        }
+        else{
+          return $word;
+        }
     }
 }
-?>
