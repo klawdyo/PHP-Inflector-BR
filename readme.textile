@@ -7,8 +7,10 @@ require("inflector.php");
 
 pre. //Transformando a palavra para o plural
 echo Inflector::pluralize('mês');
+//Retorna "meses"
 
 
 pre. //Transformando a palavra para o singular
 echo Inflector::singularize('meses');
+//Retorna "mês"
 
