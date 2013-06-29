@@ -59,7 +59,7 @@ class Inflector{
      *    @param  string $pluralWord Palavra no plural
      *    @return bool
      */
-    public static function addException($singularWord, #pluralWord){
+    public static function addException($singularWord, $pluralWord){
       self::$exceptions[$singularWord] = $pluralWord;
 
       return true;
