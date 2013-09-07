@@ -75,7 +75,7 @@ class Inflector{
      *    @param  string $pluralSufix Terminação da palavra no plural
      *    @return bool
      */
-    public static function addRule($singularWord, #pluralWord){
+    public static function addRule($singularWord, $pluralWord){
       self::$rules[$singularSufix] = $pluralSufix;
 
       return true;
@@ -130,10 +130,10 @@ class Inflector{
      */
     public static function singularize($word){
         //Pertence às exceções?
-        if(in_array($word, self::$exceptions)):
+        if(in_array($word, self::$exceptions)){
             $invert = array_flip(self::$exceptions);
             return $invert[$word];
-        
+        }
         //Não é exceção.. Mas pertence a alguma regra?
         else{
             foreach(self::$rules as $singular => $plural){
