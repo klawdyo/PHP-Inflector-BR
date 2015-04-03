@@ -1,0 +1,12 @@
+{
+    "name": "VictorOtavio/Inflector",
+    "description": "Pluralize and Singularize words in portuguese",
+    "keywords": ["pluralize", "singularize", "portuguese"],
+    "license": "MIT",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Inflector\\": "src/"
+        }
+    }
+}
