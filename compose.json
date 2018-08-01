@@ -1,1 +1,7 @@
-
+{
+    "name": "klawdyo/Inflector-BR",
+    "description": "Pluralização e singularização de palavras em português",
+    "require": {
+        "php": "^5.3.3 || ^7.0"
+    }
+}
