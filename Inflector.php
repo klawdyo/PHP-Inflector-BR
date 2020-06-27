@@ -75,7 +75,7 @@ class Inflector{
      *    @param  string $pluralSufix Terminação da palavra no plural
      *    @return bool
      */
-    public static function addRule($singularWord, $pluralWord){
+    public static function addRule($singularSufix, $pluralSufix){
       self::$rules[$singularSufix] = $pluralSufix;
 
       return true;
