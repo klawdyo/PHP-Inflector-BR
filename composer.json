@@ -3,5 +3,11 @@
     "description": "Pluralização e singularização de palavras em português",
     "require": {
         "php": "^5.3.3 || ^7.0"
+    },
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Inflector\\": "src/"
+        }
     }
 }

@@ -1,9 +1,12 @@
 h2. Exemplos
 
+composer require klawdyo/inflector-br
+
 pre. /**
   * Usando inflexões de palavras em português brasileiro
   */
-require("inflector.php");
+
+use Inflector\Inflector;
 
 pre. //Transformando a palavra para o plural
 echo Inflector::pluralize('mês');
